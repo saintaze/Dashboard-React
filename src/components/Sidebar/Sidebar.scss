@@ -1,0 +1,40 @@
+.Sidebar {
+  height: 100vh;
+  width: 26rem;
+
+  &__menu{
+    background-color: #f3f3f3;
+    height: 100%;
+    list-style: none;
+    padding: 2rem 0;
+  }
+
+  &__menu-item{
+    // background-color: aquamarine;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    padding-left: 6.5rem;
+    text-align: left;
+    
+
+    &:hover {
+      cursor: pointer;
+      transition: all .3s;
+      background-color: darken(#f3f3f3, 4);
+    }
+  }
+
+  &__menu-link{
+    color: #333;
+    text-decoration: none;
+  }
+
+  &__menu-icon{
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  &__menu-text{
+
+  }
+}

@@ -10,14 +10,14 @@ export default function Navbar() {
       </div>
       <ul className="Navbar__actions">
         <li className="Navbar__item">
-          <i className="Navbar__icon" class="fas fa-globe-americas"></i>
+          <i className="fas fa-globe-americas Navbar__icon"></i>
           <span className="Navbar__lang">EN</span>
         </li>
         <li className="Navbar__item">
-          <i className="Navbar__icon" class="fas fa-envelope"></i>
+          <i className="fas fa-envelope Navbar__icon"></i>
         </li>
         <li className="Navbar__item">
-          <i className="Navbar__icon" class="fas fa-bell"></i>
+          <i className="fas fa-bell Navbar__icon"></i>
         </li>
       </ul>
     </div>
