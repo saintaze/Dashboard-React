@@ -1,0 +1,17 @@
+.LastLogin {
+  background: #053554;
+  color: white;
+  text-align: right;
+  height: 3.4rem;
+  line-height: 3.4rem;
+  padding: 0 3.2rem;
+  
+  &__title {
+    font-weight: 800;
+    display: inline-block;
+    margin-right: .4rem;
+  }
+
+  &__time {
+  }
+}
