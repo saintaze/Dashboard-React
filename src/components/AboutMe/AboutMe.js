@@ -6,7 +6,7 @@ export default function AboutMe() {
     <div className="AboutMe" id="lol">
       <h2 className="AboutMe__heading">About Me</h2>
       <div className="AboutMe__text-box">
-        <p className="AboutMe__text">I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read.</p>
+        <p className="AboutMe__text">I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read. I like to dance and I like to sing as well</p>
         <p className="AboutMe__text">My bedroom at home offers a great symbol of who I am and what is important to me. The walls are simply painted.</p>
 
         <p className="AboutMe__text">I always wanted to be a great writer, like Victor Hugo who wrote "Les Miserable", or like Roman Roland.</p>
