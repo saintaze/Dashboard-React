@@ -3,11 +3,11 @@
 
 .TabMenu {
   background-color: white;
-  flex: 2;
   border-bottom: 4px solid #eee;
   border-right: 4px solid #eee;
   border-radius: 1px;
   padding-bottom: 2.5rem;
+  margin-right: 2.6rem;
 
 
   &__links {
@@ -18,24 +18,26 @@
   }
 
   &__link {
-    padding: .8rem;
-     flex: 1;
-     transition: all .2s;
-     cursor: pointer;
-     border-top: 4px solid white;
-     border-bottom: 1px solid #eee;
-     color: $color-green-light;
+    padding: 1rem 0 1.45rem;
+    flex: 1;
+    transition: all .2s;
+    cursor: pointer;
+    background-color: $color-grey-light-1;
+    font-weight: 500;
+    background-color: #dedede;
+    border-top: 4px solid #dedede;
+     color: #333;
+
 
     &--active {
       border-top: 4px solid $color-green-light;
+      background-color: white;
       border-bottom: none;
-      color: #333;
+     
     }
   }
 
   &__choice {
-
-    width: 70rem;
   }
 
 

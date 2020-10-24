@@ -7,7 +7,7 @@ import PasswordStrengthBar from 'react-password-strength-bar';
 import './AccountSettings.scss'
 
 
-let AccountSettings = ({ values, errors, isSubmitting }) => {
+let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
 
   const validateConfirmPassword = (actual_password, confirm_password) => {
     if (actual_password && confirm_password) {
@@ -24,6 +24,10 @@ let AccountSettings = ({ values, errors, isSubmitting }) => {
     }
   };
 
+  const changeInputType = e => {
+    e.target.type = 'password';
+  }
+ 
   return (
     <div className="AccountSettings">
       <h2 className="AccountSettings__heading">Your Account Settings</h2>
@@ -35,19 +39,22 @@ let AccountSettings = ({ values, errors, isSubmitting }) => {
             type="email"
             name="email"
             placeholder="Enter Email"
+            autocomplete="off"
           />
           <p className="Form__error" style={{ opacity: errors.email ? 1 : 0 }}>
-            {errors.email }
+            {touched.email && errors.email}
           </p>
         </div>
         <div className="Form__control">
           <label className="Form__label">Password</label>
           <Field
             className="Form__field"
-            type="password"
+            type="text"
             name="password"
             placeholder="Enter Password"
             validate={validatePassword}
+            onClick={changeInputType}
+            onFocus={changeInputType}
           />
           <PasswordStrengthBar
             password={values.password}
@@ -55,7 +62,7 @@ let AccountSettings = ({ values, errors, isSubmitting }) => {
             minLength={0}
           />
           <p className="Form__error" style={{ opacity: errors.password ? 1 : 0 }}>
-            {errors.password}
+            {touched.password && errors.password}
           </p>
         </div>
         <div className="Form__control">
@@ -69,7 +76,7 @@ let AccountSettings = ({ values, errors, isSubmitting }) => {
               validateConfirmPassword(values.password, value)}
           />
           <p className="Form__error" style={{ opacity: errors.confirmPassword ? 1 : 0 }}>
-            {errors.confirmPassword}
+            {touched.confirmPassword && errors.confirmPassword}
           </p>
         </div>
         <button className="Form__submit" disabled={isSubmitting}>
