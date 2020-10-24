@@ -2,9 +2,10 @@
 @import '../../Sass//colors.scss';
 
 .Sidebar {
-  width: 26rem;
+  width: 35rem;
   transition: all .1s linear;
   background-color: $color-green-dark-1;
+  flex: 1;
 
   &__menu-toggle {
     color: white;
@@ -69,19 +70,17 @@
     background-color: #103d5b;
     list-style: none;
     padding: 0 2rem;
-
   }
 
   &__menu-item{
     font-size: 1.5rem;
     padding: 1rem 1rem;
     padding-left: .5rem;
-    transition: all .3s;
+    transition: all .3s ease-in-out;
     background-color: #103d5b;
     border-bottom: 1px solid #224963;
     font-weight: 500;
     word-spacing: -.5px;
-    
 
     &:hover, &:nth-child(2) {
       cursor: pointer;
@@ -102,7 +101,6 @@
   &__menu-icon{
     display: inline-block;
     margin-right: 1rem;
-    
   }
 
   &__menu-text{

@@ -19,6 +19,7 @@
   &__control {
     margin-bottom: 1rem;
     width: 50%;
+    box-sizing: border-box;
     
     &:not(:last-child){
       margin-right: 2rem;
@@ -42,7 +43,6 @@
     padding: 1.3rem 1.6rem;
     border-radius: 2px;
     color: #505050;
-    display: inline-block;
 
 
     &--select {

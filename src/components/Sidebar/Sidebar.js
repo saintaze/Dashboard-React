@@ -5,9 +5,13 @@ import './Sidebar.scss'
 
 const Sidebar = () => {
   const [sideBarWidth, setSideBarWidth] = useState('35rem');
+  const [sideBarIsOpen, setSideBarIsOpen] = useState(true);
+
   const toggleSidebar = () => {
     const width = sideBarWidth === '35rem' ? '3rem' : '35rem'
     setSideBarWidth(width);
+    setSideBarIsOpen(!sideBarIsOpen);
+    console.log(sideBarIsOpen)
   }
 
   return (

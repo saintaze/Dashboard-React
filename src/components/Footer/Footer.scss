@@ -1,0 +1,51 @@
+.Footer {
+  padding: 3rem .5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+
+  &__copyright {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    color: #a8acaf;
+  }
+
+  &__year {
+    margin: 0 .5rem;
+    color: #a8acaf;
+  }
+
+  &__brand {
+    color: #f75863;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover {
+      transition: all .2s;
+      color: darken(#f75863, 6);
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #a8acaf;
+
+    &:not(:last-child){
+      margin-right: 1rem;
+    }
+
+    &:hover {
+      transition: all .2s;
+      color: darken(#a8acaf, 6);
+    }
+  }
+}

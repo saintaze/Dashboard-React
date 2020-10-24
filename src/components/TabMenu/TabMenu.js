@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import AccountSettings from '../AccountSettings/AccountSettings'
 import UserInformation from '../UserInformation/UserInformation'
 import {TAB_CHOICES} from '../../constants'
@@ -8,6 +8,15 @@ import './TabMenu.scss'
 
 
 export default function TabMenu() {
+  // useEffect(() => {
+  //   let timer = setInterval(()=>{
+  //     setTabChoice(tabChoice === 'ACCOUNT' ? 'USER' : 'ACCOUNT')
+  //   }, 2000)
+
+  //   return () => {
+  //     clearInterval(timer)
+  //   }
+  // })
 
   const [tabChoice, setTabChoice] = useState(TAB_CHOICES.ACCOUNT)
 
