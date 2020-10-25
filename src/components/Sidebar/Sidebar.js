@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import avatar  from '../../assets/images/a-1.png'
 
 import './Sidebar.scss'

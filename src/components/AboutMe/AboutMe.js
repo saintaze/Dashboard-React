@@ -15,7 +15,7 @@ export default function AboutMe() {
       </div>
       
       <div className="AboutMe__actions">
-        <i class="fas fa-pen AboutMe__action"></i>
+        <i className="fas fa-pen AboutMe__action"></i>
         <span className="AboutMe__action-text">Edit Bio</span>
       </div>
     </div>

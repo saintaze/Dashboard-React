@@ -12,8 +12,8 @@ export default function Profile() {
       </div>
       <p className="Profile__name">Andrew</p>
       <div className="Profile__actions">
-        <i class="fas fa-plus Profile__action"></i>
-        <i class="fas fa-minus Profile__action"></i>
+        <i className="fas fa-plus Profile__action"></i>
+        <i className="fas fa-minus Profile__action"></i>
       </div>
       <p className="Profile__text">upload a new profile picture</p>
     </div>
