@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="Footer">
       <div className="Footer__copyright">
-        <i class="far fa-copyright Footer__icon"></i>
+        <i className="far fa-copyright Footer__icon"></i>
         <span className="Footer__year">2020</span>
         <a href="#" className="Footer__brand">InnoLoft</a>
       </div>

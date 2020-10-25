@@ -39,7 +39,7 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
             type="email"
             name="email"
             placeholder="Enter Email"
-            autocomplete="off"
+            autoComplete="off"
           />
           <p className="Form__error" style={{ opacity: errors.email ? 1 : 0 }}>
             {touched.email && errors.email}

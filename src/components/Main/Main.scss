@@ -1,9 +1,12 @@
 .Main {
   background-color: #f0f3f3;
-  padding: 2.6rem 2.6rem 2.6rem 3rem;
+  padding: 2.6rem 3rem;
   color: #555;
   flex: 4.6;
 
+  @media screen and (max-width: 430px) {
+    padding: 2.6rem 1.6rem;
+  }
   
   &__content {
     display: flex;

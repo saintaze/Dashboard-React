@@ -13,7 +13,7 @@ const Sidebar = () => {
       </div>
       <div className="Sidebar__user">
         <div className="Sidebar__avatar-box">
-          <img className="Sidebar__avatar" src={avatar} alt="avatar"/>
+          <img draggable="false" className="Sidebar__avatar" src={avatar} alt="avatar"/>
         </div>
         <div className="Sidebar__info">
           <div className="Sidebar__welcome">Welcome Andrew!</div>

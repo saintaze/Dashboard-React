@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <div className="Navbar">
       <div className="Navbar__logo-box">
-        <img src={logo} alt="Logo" className="Navbar__logo"/>
+        <img draggable="false" src={logo} alt="Logo" className="Navbar__logo"/>
       </div>
       <ul className="Navbar__actions">
         <li className="Navbar__item">
