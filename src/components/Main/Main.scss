@@ -54,12 +54,15 @@
 
   &__title {
     font-weight: 300;
-    font-size: 4.4rem;
+    font-size: 4.3rem;
+    letter-spacing: -0.3px;
     line-height: .8;
   }
 
   &__subtitle {
     margin: 1.3rem 0 3rem;
+    letter-spacing: -0.3px;
+
 
     @media (max-width: 1200px) {
       margin: 1.3rem 0 0;

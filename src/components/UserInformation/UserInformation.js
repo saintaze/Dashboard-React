@@ -126,7 +126,7 @@ UserInformation = withFormik({
     lastName: yup
       .string()
       .matches(/^[a-zA-z]*$/, 'Last Name can only contain letters')
-      .required("First name is required"),
+      .required("Last name is required"),
     streetAddress: yup
       .string()
       .required("Street Address is required"),
