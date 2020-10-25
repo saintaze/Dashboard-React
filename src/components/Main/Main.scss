@@ -3,21 +3,53 @@
   padding: 2.6rem 2.6rem 2.6rem 3rem;
   color: #555;
   flex: 4.6;
+
   
   &__content {
     display: flex;
-  } 
+
+    @media screen and (max-width: 1200px){
+      flex-direction: column;
+    }
+  }
+  
+  
+  &__header {
+    @media (max-width: 1200px) {
+      margin: 1rem 0 3rem;
+    }
+
+    @media (max-width: 620px) {
+      margin: 3rem 0 3rem;
+    }
+  }
 
   &__left{
     margin-right: 2.6rem;
-    // width: 69%;
     width: 70%;
-
+    
+    @media screen and (max-width: 1200px){
+      order: 2;
+      width: 100%;
+    }
   }
 
   &__right {
-    // width: 27%;
-    width: 28%;
+    width: 29%;
+
+    @media screen and (max-width: 1200px){
+      width: 100%;
+      display: flex;
+      order: 1;
+
+      & > * {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 620px) {
+      flex-direction: column;
+    }
   }
 
   &__title {
@@ -28,5 +60,9 @@
 
   &__subtitle {
     margin: 1.3rem 0 3rem;
+
+    @media (max-width: 1200px) {
+      margin: 1.3rem 0 0;
+    }
   }
 }

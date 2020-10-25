@@ -4,20 +4,12 @@ import avatar  from '../../assets/images/a-1.png'
 import './Sidebar.scss'
 
 const Sidebar = () => {
-  const [sideBarWidth, setSideBarWidth] = useState('35rem');
-  const [sideBarIsOpen, setSideBarIsOpen] = useState(true);
 
-  const toggleSidebar = () => {
-    const width = sideBarWidth === '35rem' ? '3rem' : '35rem'
-    setSideBarWidth(width);
-    setSideBarIsOpen(!sideBarIsOpen);
-    console.log(sideBarIsOpen)
-  }
 
   return (
-    <div className="Sidebar" style={{width: sideBarWidth}}>
+    <div className="Sidebar" >
       <div className="Sidebar__menu-toggle">
-        <i onClick={toggleSidebar} className="fas fa-bars"></i>
+        <i className="fas fa-bars"></i>
       </div>
       <div className="Sidebar__user">
         <div className="Sidebar__avatar-box">

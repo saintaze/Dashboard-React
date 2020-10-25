@@ -12,8 +12,10 @@ export default function Main() {
     <div className="Main">
       <div className="Main__content">
         <div className="Main__left">
-          <h1 className="Main__title">My Account</h1>
-          <p className="Main__subtitle">You can change your account settings here</p>
+          <div className="Main__header">
+            <h1 className="Main__title">My Account</h1>
+            <p className="Main__subtitle">You can change your account settings here</p>
+          </div>
           <TabMenu />
         </div>
         <div className="Main__right">
