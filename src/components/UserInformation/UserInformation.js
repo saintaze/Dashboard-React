@@ -4,10 +4,18 @@ import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 
 import './UserInformation.scss'
+import { connect } from 'react-redux'
+import { mockSubmit } from '../../utilities';
+
+import {
+  submitUserFormBegin,
+  submitUserFormSuccess,
+  submitUserFormFailure
+} from '../../store/actions/userFormActions'
 
 
 
-let UserInformation = ({touched, values, errors, isSubmitting }) => {
+let UserInformation = ({touched, errors, isSubmitting }) => {
 
   return (
     <div className="UserInfo">
@@ -140,16 +148,24 @@ UserInformation = withFormik({
       .string()
       .required("Country is required")
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    setTimeout(() => {
-      if (values.email === "andrew@test.io") {
-        setErrors({ email: "That email is already taken" });
-      } else {
-        resetForm();
-      }
+  async handleSubmit(values, { props, resetForm, setSubmitting }) {
+    const payload = { ...values };
+    try {
+      props.dispatch(submitUserFormBegin());
+      const data = await mockSubmit(payload);
+      props.dispatch(submitUserFormSuccess(data));
+      resetForm();
+    } catch (e) {
+      props.dispatch(submitUserFormFailure(e));
+    } finally {
       setSubmitting(false);
-    }, 2000);
+    }
   }
 })(UserInformation);
 
-export default UserInformation;
+const mapStateToProps = state => ({
+  loading: state.userForm.loading,
+  error: state.userForm.error
+});
+
+export default connect(mapStateToProps)(UserInformation);

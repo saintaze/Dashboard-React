@@ -1,8 +1,15 @@
 import React from 'react'
+import PasswordStrengthBar from 'react-password-strength-bar'
+import { withFormik, Form, Field } from "formik"
+import * as yup from "yup"
+import { connect } from 'react-redux'
+import {mockSubmit} from '../../utilities';
 
-import { withFormik, Form, Field } from "formik";
-import * as yup from "yup";
-import PasswordStrengthBar from 'react-password-strength-bar';
+import { 
+  submitAccountFormBegin, 
+  submitAccountFormSuccess, 
+  submitAccountFormFailure
+} from '../../store/actions/accountFormActions'
 
 import './AccountSettings.scss'
 
@@ -10,22 +17,32 @@ import './AccountSettings.scss'
 let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
 
   const validateConfirmPassword = (actual_password, confirm_password) => {
+    // if (actual_password && confirm_password) {
+    //   if (actual_password !== confirm_password) {
+    //     return "Password does not match";
+    //   }
+    // }
+
+    let error = '';
     if (actual_password && confirm_password) {
-      if (actual_password !== confirm_password) {
-        return "Password does not match";
-      }
+    if (actual_password !== confirm_password) {
+      error = "Password does not match";
     }
+  }
+    return error;
   };
 
   const validatePassword = password => {
+    let error = '';
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
-      return "Password must be atleast 8 characters (one uppercase, one lowercase, one number and one symbol)";
+      error = "Password must be atleast 8 characters (one uppercase, one lowercase, one number and one symbol)";
     }
+    return error;
   };
 
   const changeInputType = e => {
-    e.target.type = 'password';
+    // e.target.type = 'password';
   }
  
   return (
@@ -72,14 +89,14 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
             type="password"
             name="confirmPassword"
             placeholder="Enter Confirm Password"
-            validate={value =>
-              validateConfirmPassword(values.password, value)}
+            // validate={value =>
+            //   validateConfirmPassword(values.password, value)}
           />
           <p className="Form__error" style={{ opacity: errors.confirmPassword ? 1 : 0 }}>
             {touched.confirmPassword && errors.confirmPassword}
           </p>
         </div>
-        <button className="Form__submit" disabled={isSubmitting}>
+        <button className="Form__submit" disabled={isSubmitting} type="submit">
           Save
         </button>
       </Form>
@@ -107,16 +124,30 @@ AccountSettings = withFormik({
       .string()
       .required("Confirm Password is required")
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    setTimeout(() => {
-      if (values.email === "andrew@test.io") {
-        setErrors({ email: "That email is already taken" });
-      } else {
-        resetForm();
-      }
+  async handleSubmit(values, { props, resetForm, setSubmitting }) {
+    console.log(props)
+    // delete values['confirmPassword'];
+    let data = null
+    try {
+      props.dispatch(submitAccountFormBegin());
+      // const { data } = await axios.post('https://reqres.in/api/register', values);
+      data = await mockSubmit();
+      props.dispatch(submitAccountFormSuccess(data));
+      // resetForm();
+    }catch(e){
+      props.dispatch(submitAccountFormFailure(e));
+    }finally{
       setSubmitting(false);
-    }, 2000);
+    } 
   }
 })(AccountSettings);
 
-export default AccountSettings;
+
+const mapStateToProps = state => ({
+  loading: state.accountForm.loading,
+  error: state.accountForm.error
+});
+
+export default connect(mapStateToProps)(AccountSettings);
+
+
