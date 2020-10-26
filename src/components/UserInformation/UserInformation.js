@@ -1,36 +1,35 @@
 import React from 'react'
-
-import { withFormik, Form, Field } from "formik";
+import { withFormik, Form, Field } from "formik"
 import * as yup from "yup";
-
-import './UserInformation.scss'
 import { connect } from 'react-redux'
-import { mockSubmit } from '../../utilities';
 
-import Modal from '../Modal/Modal'
-
+import { mockSubmit } from '../../utilities'
+import { openModal } from '../../store/actions/modalActions'
 import {
   submitUserFormBegin,
   submitUserFormSuccess,
   submitUserFormFailure
 } from '../../store/actions/userFormActions'
+import Modal from '../Modal/Modal'
 
-import { openModal } from '../../store/actions/modalActions'
+import './UserInformation.scss'
 
+
+
+import Loader from 'react-loader-spinner'
+
+
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 
 
 let UserInformation = ({touched, errors, isSubmitting }) => {
 
-
   return (
     <div className="UserInfo">
       <Modal formType="userForm"/>
       <h2 className="UserInfo__heading">Your User Information</h2>
-     
-
       <Form className="Form">
-
       <div className="Form__split">
         <div className="Form__control">
           <label className="Form__label">First Name</label>
@@ -161,13 +160,13 @@ UserInformation = withFormik({
     const payload = { ...values };
     try {
       props.dispatch(submitUserFormBegin());
+      props.dispatch(openModal())
       const data = await mockSubmit(payload);
       props.dispatch(submitUserFormSuccess(data));
       resetForm();
     } catch (e) {
       props.dispatch(submitUserFormFailure(e));
     } finally {
-      props.dispatch(openModal())
       setSubmitting(false);
     }
   }
@@ -175,7 +174,6 @@ UserInformation = withFormik({
 
 const mapStateToProps = state => ({
   loading: state.userForm.loading,
-  error: state.userForm.error,
   modalIsOpen: state.modal.open
 });
 

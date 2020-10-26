@@ -1,8 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Loader from 'react-loader-spinner'
 
 import { closeModal } from '../../store/actions/modalActions'
 
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import './Modal.scss'
 
 const Modal = ({dispatch, isOpen, formData}) => {
@@ -10,6 +12,8 @@ const Modal = ({dispatch, isOpen, formData}) => {
   const onModalClose = () => {
     dispatch(closeModal());
   }
+
+
 
   const renderIcon = () => {
     let classes = 'far fa-check-circle ModalContent__icon';
@@ -34,6 +38,15 @@ const Modal = ({dispatch, isOpen, formData}) => {
   return (
     <div className="Modal" style={{ display: isOpen ? 'block' : 'none' }}>
       <div className="ModalBackdrop" onClick={onModalClose}>
+        {formData.loading ? 
+        <Loader
+          className="Loader"
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+        :
         <div className="ModalContent" onClick={e => e.stopPropagation()}>
           <i className="fas fa-times ModalContent__close" onClick={onModalClose}></i>
           <div className="ModalContent__header">
@@ -45,8 +58,9 @@ const Modal = ({dispatch, isOpen, formData}) => {
           </div>
           <div className="ModalContent__footer">
             {renderButton()}
-          </div>
-        </div>
+          </div> 
+        </div>  
+        }
       </div>
     </div>
   )
@@ -54,7 +68,7 @@ const Modal = ({dispatch, isOpen, formData}) => {
 
 const mapStateToProps = (state, props) => ({
   isOpen: state.modal.isOpen,
-  formData: state[props.formType] 
+  formData: state[props.formType], 
 });
 
 export default connect(mapStateToProps)(Modal)
