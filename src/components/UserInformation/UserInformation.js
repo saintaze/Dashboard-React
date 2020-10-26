@@ -7,19 +7,28 @@ import './UserInformation.scss'
 import { connect } from 'react-redux'
 import { mockSubmit } from '../../utilities';
 
+import Modal from '../Modal/Modal'
+
 import {
   submitUserFormBegin,
   submitUserFormSuccess,
   submitUserFormFailure
 } from '../../store/actions/userFormActions'
 
+import { openModal } from '../../store/actions/modalActions'
+
+
 
 
 let UserInformation = ({touched, errors, isSubmitting }) => {
 
+
   return (
     <div className="UserInfo">
+      <Modal formType="userForm"/>
       <h2 className="UserInfo__heading">Your User Information</h2>
+     
+
       <Form className="Form">
 
       <div className="Form__split">
@@ -158,6 +167,7 @@ UserInformation = withFormik({
     } catch (e) {
       props.dispatch(submitUserFormFailure(e));
     } finally {
+      props.dispatch(openModal())
       setSubmitting(false);
     }
   }
@@ -165,7 +175,9 @@ UserInformation = withFormik({
 
 const mapStateToProps = state => ({
   loading: state.userForm.loading,
-  error: state.userForm.error
+  error: state.userForm.error,
+  modalIsOpen: state.modal.open
 });
 
 export default connect(mapStateToProps)(UserInformation);
+

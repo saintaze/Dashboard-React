@@ -6,11 +6,12 @@ export const submitUserFormBegin = () => ({
   type: SUBMIT_USER_FORM_BEGIN
 });
 
-export const submitUserFormSuccess = () => ({
-  type: SUBMIT_USER_FORM_SUCCESS
+export const submitUserFormSuccess = data => ({
+  type: SUBMIT_USER_FORM_SUCCESS,
+  payload: {...data}
 });
 
-export const submitUserFormFailure = error => ({
+export const submitUserFormFailure = data => ({
   type: SUBMIT_USER_FORM_FAILURE,
-  payload: { error }
+  payload: { ...data }
 });

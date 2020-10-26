@@ -17,17 +17,11 @@ import './AccountSettings.scss'
 let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
 
   const validateConfirmPassword = (actual_password, confirm_password) => {
-    // if (actual_password && confirm_password) {
-    //   if (actual_password !== confirm_password) {
-    //     return "Password does not match";
-    //   }
-    // }
-
     let error = '';
     if (actual_password && confirm_password) {
-    if (actual_password !== confirm_password) {
-      error = "Password does not match";
-    }
+      if (actual_password !== confirm_password) {
+        error = "Password does not match";
+      }
   }
     return error;
   };
@@ -42,7 +36,7 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
   };
 
   const changeInputType = e => {
-    // e.target.type = 'password';
+    e.target.type = 'password';
   }
  
   return (
@@ -89,8 +83,8 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
             type="password"
             name="confirmPassword"
             placeholder="Enter Confirm Password"
-            // validate={value =>
-            //   validateConfirmPassword(values.password, value)}
+            validate={value =>
+              validateConfirmPassword(values.password, value)}
           />
           <p className="Form__error" style={{ opacity: errors.confirmPassword ? 1 : 0 }}>
             {touched.confirmPassword && errors.confirmPassword}
@@ -125,15 +119,13 @@ AccountSettings = withFormik({
       .required("Confirm Password is required")
   }),
   async handleSubmit(values, { props, resetForm, setSubmitting }) {
-    console.log(props)
-    // delete values['confirmPassword'];
-    let data = null
+    const {email, password} = values;
+    const payload = {email, password};
     try {
       props.dispatch(submitAccountFormBegin());
-      // const { data } = await axios.post('https://reqres.in/api/register', values);
-      data = await mockSubmit();
+      const data = await mockSubmit(payload);
       props.dispatch(submitAccountFormSuccess(data));
-      // resetForm();
+      resetForm();
     }catch(e){
       props.dispatch(submitAccountFormFailure(e));
     }finally{
