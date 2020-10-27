@@ -1,4 +1,4 @@
-# React-Dashboard
+# Dashboard-React
 A demo app to display user dashboard with form validations.
 
 ### Features

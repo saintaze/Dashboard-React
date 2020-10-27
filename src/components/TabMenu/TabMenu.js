@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import cx from 'classnames'
-import { TransitionGroup } from 'react-transition-group';
-
 
 import { TAB_CHOICES } from '../../constants'
 import AccountSettings from '../AccountSettings/AccountSettings'
@@ -40,9 +38,9 @@ export default function TabMenu() {
           User Information
         </a>
       </div>
-      <TransitionGroup className="TabMenu__choice">
+      <div className="TabMenu__choice">
         {renderTabChoice(tabChoice)}
-      </TransitionGroup>
+      </div>
     </div>
   )
 }
