@@ -1,8 +1,7 @@
-export const mockSubmit = async (values) => {
+export const mockSubmit = async (payload) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const randomNum = Math.floor(Math.random() * 10);
-      console.log('RAN', randomNum)
       if (randomNum >= 5) {
         resolve({
           status: 'Success',
@@ -14,6 +13,6 @@ export const mockSubmit = async (values) => {
           message: 'Form could not be submitted due to error'
         })
       }
-    }, 2000)
+    }, 2000);
   })
 }

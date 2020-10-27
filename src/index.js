@@ -1,10 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import {createStore} from 'redux';
-import { Provider } from 'react-redux';
-import rootReducer from './store/reducers/rootReducer';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+import rootReducer from './store/reducers/rootReducer'
+import App from './App'
+
+import './index.scss'
 
 
 const haveDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
