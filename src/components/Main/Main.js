@@ -7,7 +7,6 @@ import Footer from '../Footer/Footer'
 
 import './Main.scss'
 
-
 const Main = () => {
   return (
     <div className="Main">
@@ -15,7 +14,9 @@ const Main = () => {
         <div className="Main__left">
           <div className="Main__header">
             <h1 className="Main__title">My Account</h1>
-            <p className="Main__subtitle">You can change your account settings here</p>
+            <p className="Main__subtitle">
+              You can change your account settings here
+            </p>
           </div>
           <TabMenu />
         </div>

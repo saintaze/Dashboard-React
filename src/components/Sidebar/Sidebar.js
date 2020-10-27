@@ -1,23 +1,29 @@
 import React from 'react'
 
-import avatar  from '../../assets/images/a-1.png'
+import avatar from '../../assets/images/a-1.png'
 
 import './Sidebar.scss'
 
-
 const Sidebar = () => {
   return (
-    <div className="Sidebar" >
+    <div className="Sidebar">
       <div className="Sidebar__menu-toggle">
         <i className="fas fa-bars"></i>
       </div>
       <div className="Sidebar__user">
         <div className="Sidebar__avatar-box">
-          <img draggable="false" className="Sidebar__avatar" src={avatar} alt="avatar"/>
+          <img
+            draggable="false"
+            className="Sidebar__avatar"
+            src={avatar}
+            alt="avatar"
+          />
         </div>
         <div className="Sidebar__info">
           <div className="Sidebar__welcome">Welcome Andrew!</div>
-          <div className="Sidebar__status"><span>Status:</span> Online</div>
+          <div className="Sidebar__status">
+            <span>Status:</span> Online
+          </div>
         </div>
       </div>
       <ul className="Sidebar__menu">

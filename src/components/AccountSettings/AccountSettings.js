@@ -1,47 +1,45 @@
 import React from 'react'
 import PasswordStrengthBar from 'react-password-strength-bar'
-import { withFormik, Form, Field } from "formik"
-import * as yup from "yup"
+import { withFormik, Form, Field } from 'formik'
+import * as yup from 'yup'
 import { connect } from 'react-redux'
 
-
-import {mockSubmit} from '../../utilities';
+import { mockSubmit } from '../../utilities'
 import { openModal } from '../../store/actions/modalActions'
 import {
   formSubmitBegin,
   formSubmitSuccess,
-  formSubmitFailure
+  formSubmitFailure,
 } from '../../store/actions/formActions'
 import Modal from '../Modal/Modal'
 
 import './AccountSettings.scss'
 
-
 let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
-
   const validateConfirmPassword = (actual_password, confirm_password) => {
-    let error = '';
+    let error = ''
     if (actual_password && confirm_password) {
       if (actual_password !== confirm_password) {
-        error = "Password does not match";
+        error = 'Password does not match'
       }
     }
-    return error;
-  };
-
-  const validatePassword = password => {
-    let error = '';
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      error = "Password must be atleast 8 characters (one uppercase, one lowercase, one number and one symbol)";
-    }
-    return error;
-  };
-
-  const changeInputType = e => {
-    e.target.type = 'password';
+    return error
   }
- 
+
+  const validatePassword = (password) => {
+    let error = ''
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    if (!passwordRegex.test(password)) {
+      error =
+        'Password must be atleast 8 characters (one uppercase, one lowercase, one number and one symbol)'
+    }
+    return error
+  }
+
+  const changeInputType = (e) => {
+    e.target.type = 'password'
+  }
+
   return (
     <div className="AccountSettings">
       <Modal />
@@ -76,7 +74,10 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
             scoreWords={[]}
             minLength={0}
           />
-          <p className="Form__error" style={{ opacity: errors.password ? 1 : 0 }}>
+          <p
+            className="Form__error"
+            style={{ opacity: errors.password ? 1 : 0 }}
+          >
             {touched.password && errors.password}
           </p>
         </div>
@@ -87,10 +88,14 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
             type="password"
             name="confirmPassword"
             placeholder="Enter Confirm Password"
-            validate={value =>
-              validateConfirmPassword(values.password, value)}
+            validate={(value) =>
+              validateConfirmPassword(values.password, value)
+            }
           />
-          <p className="Form__error" style={{ opacity: errors.confirmPassword ? 1 : 0 }}>
+          <p
+            className="Form__error"
+            style={{ opacity: errors.confirmPassword ? 1 : 0 }}
+          >
             {touched.confirmPassword && errors.confirmPassword}
           </p>
         </div>
@@ -99,51 +104,44 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
         </button>
       </Form>
     </div>
-  );
+  )
 }
 
 AccountSettings = withFormik({
   mapPropsToValues({ email, password, confirmPassword }) {
     return {
-      email: email || "",
-      password: password || "",
-      confirmPassword: confirmPassword || ""
-    };
+      email: email || '',
+      password: password || '',
+      confirmPassword: confirmPassword || '',
+    }
   },
   validationSchema: yup.object().shape({
     email: yup
       .string()
-      .email("Email is not valid")
-      .required("Email is required"),
-    password: yup
-      .string()
-      .required("Password is required"),
-    confirmPassword: yup
-      .string()
-      .required("Confirm Password is required")
+      .email('Email is not valid')
+      .required('Email is required'),
+    password: yup.string().required('Password is required'),
+    confirmPassword: yup.string().required('Confirm Password is required'),
   }),
   async handleSubmit(values, { props, resetForm, setSubmitting }) {
-    const { email, password } = values;
-    const payload = { email, password };
-    props.dispatch(formSubmitBegin());
-    props.dispatch(openModal());
+    const { email, password } = values
+    const payload = { email, password }
+    props.dispatch(formSubmitBegin())
+    props.dispatch(openModal())
     try {
-      const data = await mockSubmit(payload);
-      props.dispatch(formSubmitSuccess(data));
-      resetForm();
+      const data = await mockSubmit(payload)
+      props.dispatch(formSubmitSuccess(data))
+      resetForm()
     } catch (e) {
-      props.dispatch(formSubmitFailure(e));
+      props.dispatch(formSubmitFailure(e))
     } finally {
-      setSubmitting(false);
+      setSubmitting(false)
     }
-  }
-})(AccountSettings);
+  },
+})(AccountSettings)
 
+const mapStateToProps = (state) => ({
+  modalIsOpen: state.modal.open,
+})
 
-const mapStateToProps = state => ({
-  modalIsOpen: state.modal.open
-});
-
-export default connect(mapStateToProps)(AccountSettings);
-
-
+export default connect(mapStateToProps)(AccountSettings)

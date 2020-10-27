@@ -1,50 +1,54 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Loader from 'react-loader-spinner'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group'
 
 import { closeModal } from '../../store/actions/modalActions'
 
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import './Modal.scss'
 
-const Modal = ({dispatch, isOpen, formData, loading}) => {
+const Modal = ({ dispatch, isOpen, formData, loading }) => {
   const onModalClose = () => {
-    dispatch(closeModal());
+    dispatch(closeModal())
   }
 
   const renderIcon = () => {
-    let classes = 'far ModalContent__icon';
-    if (formData && formData.status === 'Success'){
-      classes += ` ModalContent__icon--success fa-check-circle`;
-    }else {
-      classes += ` ModalContent__icon--failure fa-times-circle`;
+    let classes = 'far ModalContent__icon'
+    if (formData && formData.status === 'Success') {
+      classes += ` ModalContent__icon--success fa-check-circle`
+    } else {
+      classes += ` ModalContent__icon--failure fa-times-circle`
     }
-    return <i className={classes}></i>;
+    return <i className={classes}></i>
   }
 
   const renderButton = () => {
-    let classes = 'ModalContent__btn';
+    let classes = 'ModalContent__btn'
     if (formData && formData.status === 'Success') {
-      classes += ` ModalContent__btn--success`;
+      classes += ` ModalContent__btn--success`
     } else {
-      classes += ` ModalContent__btn--failure`;
+      classes += ` ModalContent__btn--failure`
     }
-    return <button className={classes} onClick={onModalClose}>Close</button>;
+    return (
+      <button className={classes} onClick={onModalClose}>
+        Close
+      </button>
+    )
   }
 
   // CSS Transition gives a warning in the console. There is an open Github issue for that but sadly it has not been resolved by the ReactTransitionGroup team.
-   
+
   return (
     <div className="Modal" style={{ display: isOpen ? 'block' : 'none' }}>
       <div className="ModalBackdrop" onClick={onModalClose}>
-        {loading ?
+        {loading ? (
           <CSSTransition
             timeout={200}
             classNames="fade"
             unmountOnExit
             in={isOpen}
-          > 
+          >
             <Loader
               className="Loader"
               type="Puff"
@@ -53,31 +57,33 @@ const Modal = ({dispatch, isOpen, formData, loading}) => {
               width={100}
             />
           </CSSTransition>
-          :
-          <div className="ModalContent" onClick={e => e.stopPropagation()}>
-            <i className="fas fa-times ModalContent__close" onClick={onModalClose}></i>
-            <div className="ModalContent__header">
-              {renderIcon()}
-            </div>
+        ) : (
+          <div className="ModalContent" onClick={(e) => e.stopPropagation()}>
+            <i
+              className="fas fa-times ModalContent__close"
+              onClick={onModalClose}
+            ></i>
+            <div className="ModalContent__header">{renderIcon()}</div>
             <div className="ModalContent__body">
-              <h2 className="ModalContent__status">{formData && formData.status}!</h2>
-              <p className="ModalContent__message">{formData && formData.message}!</p>
+              <h2 className="ModalContent__status">
+                {formData && formData.status}!
+              </h2>
+              <p className="ModalContent__message">
+                {formData && formData.message}!
+              </p>
             </div>
-            <div className="ModalContent__footer">
-              {renderButton()}
-            </div> 
-          </div>  
-        }
+            <div className="ModalContent__footer">{renderButton()}</div>
+          </div>
+        )}
       </div>
     </div>
-
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isOpen: state.modal.isOpen,
-  formData: state.form.data, 
-  loading: state.form.loading
-});
+  formData: state.form.data,
+  loading: state.form.loading,
+})
 
 export default connect(mapStateToProps)(Modal)
