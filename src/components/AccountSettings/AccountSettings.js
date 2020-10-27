@@ -3,13 +3,15 @@ import PasswordStrengthBar from 'react-password-strength-bar'
 import { withFormik, Form, Field } from "formik"
 import * as yup from "yup"
 import { connect } from 'react-redux'
-import {mockSubmit} from '../../utilities';
 
-import { 
-  submitAccountFormBegin, 
-  submitAccountFormSuccess, 
-  submitAccountFormFailure
-} from '../../store/actions/accountFormActions'
+import {mockSubmit} from '../../utilities';
+import { openModal } from '../../store/actions/modalActions'
+import {
+  formSubmitBegin,
+  formSubmitSuccess,
+  formSubmitFailure
+} from '../../store/actions/formActions'
+import Modal from '../Modal/Modal'
 
 import './AccountSettings.scss'
 
@@ -41,6 +43,7 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
  
   return (
     <div className="AccountSettings">
+      <Modal />
       <h2 className="AccountSettings__heading">Your Account Settings</h2>
       <Form className="Form">
         <div className="Form__control">
@@ -119,25 +122,25 @@ AccountSettings = withFormik({
       .required("Confirm Password is required")
   }),
   async handleSubmit(values, { props, resetForm, setSubmitting }) {
-    const {email, password} = values;
-    const payload = {email, password};
+    const { email, password } = values;
+    const payload = { email, password };
+    props.dispatch(formSubmitBegin());
+    props.dispatch(openModal());
     try {
-      props.dispatch(submitAccountFormBegin());
       const data = await mockSubmit(payload);
-      props.dispatch(submitAccountFormSuccess(data));
+      props.dispatch(formSubmitSuccess(data));
       resetForm();
-    }catch(e){
-      props.dispatch(submitAccountFormFailure(e));
-    }finally{
+    } catch (e) {
+      props.dispatch(formSubmitFailure(e));
+    } finally {
       setSubmitting(false);
-    } 
+    }
   }
 })(AccountSettings);
 
 
 const mapStateToProps = state => ({
-  loading: state.accountForm.loading,
-  error: state.accountForm.error
+  modalIsOpen: state.modal.open
 });
 
 export default connect(mapStateToProps)(AccountSettings);

@@ -94,21 +94,22 @@
 
     &--success {
       background-color: #74c9c9;
-    }
 
-    &--success:hover {
-      transition: all .2s;
-      background-color: darken(#79cbcb, 5);
+      &:hover {
+        transition: all .2s;
+        background-color: darken(#79cbcb, 5);
+      }
     }
 
     &--failure {
       background-color: #f16767b8;
-    }
 
-    &--failure:hover {
-      transition: all .2s;
-      background-color: darken(#f16767b8, 5);
+      &:hover {
+        transition: all .2s;
+        background-color: darken(#f16767b8, 5);
+      }
     }
+    
   }
 
 }

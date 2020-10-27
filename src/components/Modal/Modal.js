@@ -7,17 +7,15 @@ import { closeModal } from '../../store/actions/modalActions'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import './Modal.scss'
 
-const Modal = ({dispatch, isOpen, formData}) => {
+const Modal = ({dispatch, isOpen, formData, loading}) => {
 
   const onModalClose = () => {
     dispatch(closeModal());
   }
 
-
-
   const renderIcon = () => {
     let classes = 'far fa-check-circle ModalContent__icon';
-    if (formData.data && formData.data.status === 'Success'){
+    if (formData && formData.status === 'Success'){
       classes += ` ModalContent__icon--success`;
     }else {
       classes += ` ModalContent__icon--failure`;
@@ -27,7 +25,7 @@ const Modal = ({dispatch, isOpen, formData}) => {
 
   const renderButton = () => {
     let classes = 'ModalContent__btn';
-    if (formData.data && formData.data.status === 'Success') {
+    if (formData && formData.status === 'Success') {
       classes += ` ModalContent__btn--success`;
     } else {
       classes += ` ModalContent__btn--failure`;
@@ -38,7 +36,7 @@ const Modal = ({dispatch, isOpen, formData}) => {
   return (
     <div className="Modal" style={{ display: isOpen ? 'block' : 'none' }}>
       <div className="ModalBackdrop" onClick={onModalClose}>
-        {formData.loading ? 
+        {loading ? 
         <Loader
           className="Loader"
           type="Puff"
@@ -53,8 +51,8 @@ const Modal = ({dispatch, isOpen, formData}) => {
             {renderIcon()}
           </div>
           <div className="ModalContent__body">
-            <h2 className="ModalContent__status">{formData.data && formData.data.status}!</h2>
-            <p className="ModalContent__message">{formData.data && formData.data.message}!</p>
+            <h2 className="ModalContent__status">{formData && formData.status}!</h2>
+            <p className="ModalContent__message">{formData && formData.message}!</p>
           </div>
           <div className="ModalContent__footer">
             {renderButton()}
@@ -66,9 +64,10 @@ const Modal = ({dispatch, isOpen, formData}) => {
   )
 }
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = state => ({
   isOpen: state.modal.isOpen,
-  formData: state[props.formType], 
+  formData: state.form.data, 
+  loading: state.form.loading
 });
 
 export default connect(mapStateToProps)(Modal)
