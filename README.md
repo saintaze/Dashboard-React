@@ -24,7 +24,7 @@ clone repo
 run `npm start`
 
 # Live Version
-#### URL: [Visit Dashboard](https://asteroid-vue.ayezahmed.vercel.app)
+#### URL: [Visit Dashboard](https://dashboard-react-kappa.vercel.app/)
 
 # Author
 Saintaze [@saintaze](https://github.com/saintaze/)
