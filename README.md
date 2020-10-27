@@ -15,6 +15,7 @@ A demo app to display user dashboard with form validations.
 + React
 + ReactTransitionGroup
 + Formik
++ Redux
 
 ### Getting Started
 clone repo

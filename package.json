@@ -1,5 +1,5 @@
 {
-  "name": "germany",
+  "name": "Dashboard-React",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -47,7 +47,6 @@
   },
   "devDependencies": {
     "@imaginary-cloud/eslint-config-react": "1.0.1",
-    "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.2",
