@@ -12,6 +12,7 @@
   justify-content: space-between;
   flex-direction: column;
 
+
   &__heading {
     padding-bottom: .8rem;
     border-bottom: 1px solid #eee;
@@ -23,6 +24,20 @@
     height: 18.2rem;
     overflow-y: scroll;
     padding-right: 1rem;
+
+    &::-webkit-scrollbar {
+      width: .8rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $color-green-light;
+      border-radius: 60px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-green-dark-1;
+      border-radius: 60px;
+    }
   }
   
   &__text {
@@ -41,7 +56,6 @@
     color: #f75863;
     cursor: pointer;
 
-    
     &:hover {
       transition: all .2s;
       color: darken(#f75863, 6);
@@ -52,18 +66,4 @@
     font-weight: 700;
     font-size: 1.6rem;
   }
-}
-
-.AboutMe__text-box::-webkit-scrollbar {
-  width: .8rem;
-}
- 
-.AboutMe__text-box::-webkit-scrollbar-track {
-  background-color: $color-green-light;
-  border-radius: 60px;
-}
- 
-.AboutMe__text-box::-webkit-scrollbar-thumb {
-  background-color: $color-green-dark-1;
-   border-radius: 60px;
 }

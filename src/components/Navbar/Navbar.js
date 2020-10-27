@@ -1,8 +1,11 @@
 import React from 'react'
+
 import logo from '../../assets/images/logo.png'
+
 import './Navbar.scss'
 
-export default function Navbar() {
+
+const Navbar = () => {
   return (
     <div className="Navbar">
       <div className="Navbar__logo-box">
@@ -23,3 +26,5 @@ export default function Navbar() {
     </div>
   )
 }
+
+export default Navbar

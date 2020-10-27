@@ -2,7 +2,7 @@
 
 
 .TabMenu {
-  background-color: white;
+  background-color: $color-white;
   border-bottom: 4px solid #eee;
   border-right: 4px solid #eee;
   border-radius: 1px;
@@ -12,7 +12,6 @@
     text-align: center;
     display: flex;
     font-family: inherit;
-    // border-bottom: 1px solid #ddd;
   }
 
   &__link {
@@ -24,19 +23,23 @@
     font-weight: 500;
     background-color: #dedede;
     border-top: 4px solid #dedede;
-     color: #333;
+    color: #333;
 
+    &:hover {
+      transition: all .2s;
+      border-top: 4px solid #dadada;
+      background-color: #dadada;
+    }
 
     &--active {
       border-top: 4px solid $color-green-light;
-      background-color: white;
+      background-color: $color-white;
       border-bottom: none;
-     
+
+      &:hover {
+        border-top: 4px solid $color-green-light;
+        background-color: $color-white;
+      }
     }
   }
-
-  &__choice {
-  }
-
-
 }

@@ -1,7 +1,6 @@
 @import '../../Sass/colors.scss';
 
 .Profile {
-  // width: 32rem;
   padding: 1.6rem 2.7rem 2.2rem;
   background-color: white;
   border-radius: 2px;
@@ -12,12 +11,12 @@
   height: 32.4rem;
 
   @media screen and (max-width: 1200px){
-      margin-right: 2rem;
-    }
+    margin-right: 2rem;
+  }
 
-    @media (max-width: 620px) {
-      margin-right: 0;
-    }
+  @media (max-width: 620px) {
+    margin-right: 0;
+  }
 
   &__heading {
     padding-bottom: .8rem;
@@ -39,10 +38,7 @@
 
     @media (max-width: 1200px) {
       width: 12.9rem;
-
     }
-
-
   }
 
   &__name{

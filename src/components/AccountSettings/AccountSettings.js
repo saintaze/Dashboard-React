@@ -24,7 +24,7 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
       if (actual_password !== confirm_password) {
         error = "Password does not match";
       }
-  }
+    }
     return error;
   };
 

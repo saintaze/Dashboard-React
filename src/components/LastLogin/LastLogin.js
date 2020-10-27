@@ -1,7 +1,9 @@
 import React from 'react'
+
 import './LastLogin.scss'
 
-export default function LastLogin() {
+
+const LastLogin = () => {
   return (
     <div className="LastLogin">
       <span className="LastLogin__title">Last login:</span>
@@ -9,3 +11,5 @@ export default function LastLogin() {
     </div>
   )
 }
+
+export default LastLogin

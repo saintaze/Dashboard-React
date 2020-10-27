@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Loader from 'react-loader-spinner'
 
 import { closeModal } from '../../store/actions/modalActions'
@@ -8,20 +8,20 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import './Modal.scss'
 
 const Modal = ({dispatch, isOpen, formData, loading}) => {
-
   const onModalClose = () => {
     dispatch(closeModal());
   }
 
   const renderIcon = () => {
-    let classes = 'far fa-check-circle ModalContent__icon';
+    let classes = 'far ModalContent__icon';
     if (formData && formData.status === 'Success'){
-      classes += ` ModalContent__icon--success`;
+      classes += ` ModalContent__icon--success fa-check-circle`;
     }else {
-      classes += ` ModalContent__icon--failure`;
+      classes += ` ModalContent__icon--failure fa-times-circle`;
     }
     return <i className={classes}></i>;
   }
+
 
   const renderButton = () => {
     let classes = 'ModalContent__btn';
@@ -40,7 +40,7 @@ const Modal = ({dispatch, isOpen, formData, loading}) => {
         <Loader
           className="Loader"
           type="Puff"
-          color="#00BFFF"
+          color="#73c2fb"
           height={100}
           width={100}
         />

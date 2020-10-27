@@ -1,9 +1,11 @@
 import React from 'react'
+
 import './AboutMe.scss'
+
 
 export default function AboutMe() {
   return (
-    <div className="AboutMe" id="lol">
+    <div className="AboutMe">
       <h2 className="AboutMe__heading">About Me</h2>
       <div className="AboutMe__text-box">
         <p className="AboutMe__text">I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read. I like to dance and I like to sing as well</p>

@@ -1,5 +1,12 @@
-.Modal {
- 
+.Loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
+
+  @media screen and (max-width: 550px) {
+    transform: translate(-53%, -50%);
+  }
 }
 
 .ModalBackdrop {
@@ -8,23 +15,27 @@
   top: 0;
   left: 0;
   right: 0;
-  left: 0;
-  background-color: rgba(0,0,0, .6);
+  background-color: rgba(0,0,0, .78);
   height: 100vh;
   width: 100vw;
 }
 
 .ModalContent {
-  padding: 3.5rem 0;
+  padding: 3.5rem 2.2rem;
   background-color: white;
   border-radius: 2px;
   width: 50rem;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12), 0 6px 6px rgba(0,0,0,0.17);
   text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);  
+  transform: translate(-50%, -50%); 
+  
+  @media screen and (max-width: 550px) {
+    width: 80vw;
+    transform: translate(-53%, -50%);
+  }
 
   &__header {
     margin-bottom: 2rem;
@@ -42,8 +53,8 @@
     }
 
     &--failure {
-      // background-image: linear-gradient(to right, #ffb5b5, #daa8c4);
       background-image: linear-gradient(to right, #ffc9c9, #dab1c8);
+      background-image: linear-gradient(to right, #ffc9c9, #eea8cf);
     }
   }
 
@@ -63,16 +74,12 @@
     font-size: 1.5rem;
   }
 
-  &__footer {
-
-  }
-
   &__close {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
     color: #a5a5a5;
-    font-size: 1.6rem;
+    font-size: 1.62rem;
     cursor: pointer;
 
     &:hover {
@@ -109,14 +116,6 @@
         background-color: darken(#f16767b8, 5);
       }
     }
-    
   }
-
 }
 
-.Loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);  
-}

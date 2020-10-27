@@ -1,9 +1,11 @@
 import React from 'react'
-import './Profile.scss'
 
 import avatar from '../../assets/images/a-1.png'
 
-export default function Profile() {
+import './Profile.scss'
+
+
+const Profile = () => {
   return (
     <div className="Profile">
       <h2 className="Profile__heading">My Profile</h2>
@@ -19,3 +21,5 @@ export default function Profile() {
     </div>
   )
 }
+
+export default Profile

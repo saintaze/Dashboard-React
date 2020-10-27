@@ -1,13 +1,14 @@
 import React from 'react'
+
 import TabMenu from '../TabMenu/TabMenu'
 import Profile from '../Profile/Profile'
 import AboutMe from '../AboutMe/AboutMe'
 import Footer from '../Footer/Footer'
 
-
 import './Main.scss'
 
-export default function Main() {
+
+const Main = () => {
   return (
     <div className="Main">
       <div className="Main__content">
@@ -27,3 +28,5 @@ export default function Main() {
     </div>
   )
 }
+
+export default Main

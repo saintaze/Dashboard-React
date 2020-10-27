@@ -1,11 +1,11 @@
 import React from 'react'
+
 import avatar  from '../../assets/images/a-1.png'
 
 import './Sidebar.scss'
 
+
 const Sidebar = () => {
-
-
   return (
     <div className="Sidebar" >
       <div className="Sidebar__menu-toggle">
