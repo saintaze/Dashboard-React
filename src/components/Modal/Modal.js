@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Loader from 'react-loader-spinner'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { closeModal } from '../../store/actions/modalActions'
 
@@ -22,7 +23,6 @@ const Modal = ({dispatch, isOpen, formData, loading}) => {
     return <i className={classes}></i>;
   }
 
-
   const renderButton = () => {
     let classes = 'ModalContent__btn';
     if (formData && formData.status === 'Success') {
@@ -33,34 +33,44 @@ const Modal = ({dispatch, isOpen, formData, loading}) => {
     return <button className={classes} onClick={onModalClose}>Close</button>;
   }
 
+  // CSS Transition gives a warning in the console. There is an open Github issue for that but sadly it has not been resolved by the ReactTransitionGroup team.
+   
   return (
     <div className="Modal" style={{ display: isOpen ? 'block' : 'none' }}>
       <div className="ModalBackdrop" onClick={onModalClose}>
-        {loading ? 
-        <Loader
-          className="Loader"
-          type="Puff"
-          color="#73c2fb"
-          height={100}
-          width={100}
-        />
-        :
-        <div className="ModalContent" onClick={e => e.stopPropagation()}>
-          <i className="fas fa-times ModalContent__close" onClick={onModalClose}></i>
-          <div className="ModalContent__header">
-            {renderIcon()}
-          </div>
-          <div className="ModalContent__body">
-            <h2 className="ModalContent__status">{formData && formData.status}!</h2>
-            <p className="ModalContent__message">{formData && formData.message}!</p>
-          </div>
-          <div className="ModalContent__footer">
-            {renderButton()}
-          </div> 
-        </div>  
+        {loading ?
+          <CSSTransition
+            timeout={200}
+            classNames="fade"
+            unmountOnExit
+            in={isOpen}
+          > 
+            <Loader
+              className="Loader"
+              type="Puff"
+              color="#73c2fb"
+              height={100}
+              width={100}
+            />
+          </CSSTransition>
+          :
+          <div className="ModalContent" onClick={e => e.stopPropagation()}>
+            <i className="fas fa-times ModalContent__close" onClick={onModalClose}></i>
+            <div className="ModalContent__header">
+              {renderIcon()}
+            </div>
+            <div className="ModalContent__body">
+              <h2 className="ModalContent__status">{formData && formData.status}!</h2>
+              <p className="ModalContent__message">{formData && formData.message}!</p>
+            </div>
+            <div className="ModalContent__footer">
+              {renderButton()}
+            </div> 
+          </div>  
         }
       </div>
     </div>
+
   )
 }
 

@@ -3,6 +3,8 @@ import PasswordStrengthBar from 'react-password-strength-bar'
 import { withFormik, Form, Field } from "formik"
 import * as yup from "yup"
 import { connect } from 'react-redux'
+import { CSSTransition } from 'react-transition-group';
+
 
 import {mockSubmit} from '../../utilities';
 import { openModal } from '../../store/actions/modalActions'
@@ -42,6 +44,13 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
   }
  
   return (
+    <CSSTransition
+      timeout={200}
+      classNames="fade"
+      unmountOnExit
+      in
+      key="account"
+    >
     <div className="AccountSettings">
       <Modal />
       <h2 className="AccountSettings__heading">Your Account Settings</h2>
@@ -93,11 +102,12 @@ let AccountSettings = ({ touched, values, errors, isSubmitting }) => {
             {touched.confirmPassword && errors.confirmPassword}
           </p>
         </div>
-        <button className="Form__submit" disabled={isSubmitting} type="submit">
+        <button className="Form__submit" disabled={isSubmitting}>
           Save
         </button>
       </Form>
     </div>
+    </CSSTransition>
   );
 }
 

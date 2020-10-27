@@ -2,6 +2,8 @@ import React from 'react'
 import { withFormik, Form, Field } from "formik"
 import * as yup from "yup";
 import { connect } from 'react-redux'
+import { CSSTransition } from 'react-transition-group';
+
 
 import { mockSubmit } from '../../utilities'
 import { openModal } from '../../store/actions/modalActions'
@@ -18,6 +20,13 @@ import './UserInformation.scss'
 let UserInformation = ({touched, errors, isSubmitting }) => {
 
   return (
+    <CSSTransition
+      timeout={200}
+      classNames="fade"
+      unmountOnExit
+      in
+      key="user"
+    >
     <div className="UserInfo">
       <Modal />
       <h2 className="UserInfo__heading">Your User Information</h2>
@@ -112,6 +121,7 @@ let UserInformation = ({touched, errors, isSubmitting }) => {
         </button>
       </Form>
     </div>
+    </CSSTransition>
   );
 }
 
